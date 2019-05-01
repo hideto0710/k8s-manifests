@@ -1,0 +1,8 @@
+grafana:
+  enabled: true
+servicegraph:
+  enabled: true
+tracing:
+  enabled: true
+kiali:
+  enabled: true
