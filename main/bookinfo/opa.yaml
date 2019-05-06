@@ -1,0 +1,39 @@
+apiVersion: "config.istio.io/v1alpha2"
+kind: handler
+metadata:
+  name: opa-handler
+spec:
+  compiledAdapter: opa
+  params:
+    policy:
+      - |+
+        package mixerauthz
+        default allow = false
+    checkMethod: "data.mixerauthz.allow"
+    failClose: true
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: instance
+metadata:
+  name: opa-instance
+spec:
+  compiledTemplate: authorization
+  params:
+    subject:
+      user: source.uid | ""
+    action:
+      namespace: destination.namespace | "default"
+      service: destination.service.host | ""
+      method: request.method | ""
+      path: request.path | ""
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: rule
+metadata:
+  name: authorization
+spec:
+  match: "true"
+  actions:
+    - handler: opa-handler
+      instances:
+        - opa-instance
