@@ -4,11 +4,11 @@ metadata:
   name: productpage
 spec:
   hosts:
-  - productpage
+  - productpage.bookinfo.svc.cluster.local
   http:
   - route:
     - destination:
-        host: productpage
+        host: productpage.bookinfo.svc.cluster.local
         subset: v1
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -17,15 +17,15 @@ metadata:
   name: reviews
 spec:
   hosts:
-  - reviews
+  - reviews.bookinfo.svc.cluster.local
   http:
   - route:
     - destination:
-        host: reviews
+        host: reviews.bookinfo.svc.cluster.local
         subset: v1
       weight: 50
     - destination:
-        host: reviews
+        host: reviews.bookinfo.svc.cluster.local
         subset: v2
       weight: 50
 ---
@@ -35,11 +35,11 @@ metadata:
   name: ratings
 spec:
   hosts:
-  - ratings
+  - ratings.bookinfo.svc.cluster.local
   http:
   - route:
     - destination:
-        host: ratings
+        host: ratings.bookinfo.svc.cluster.local
         subset: v1
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -48,10 +48,10 @@ metadata:
   name: details
 spec:
   hosts:
-  - details
+  - details.bookinfo.svc.cluster.local
   http:
   - route:
     - destination:
-        host: details
+        host: details.bookinfo.svc.cluster.local
         subset: v1
 ---

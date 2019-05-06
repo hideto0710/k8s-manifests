@@ -3,7 +3,10 @@ kind: DestinationRule
 metadata:
   name: productpage
 spec:
-  host: productpage
+  host: productpage.bookinfo.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
   subsets:
   - name: v1
     labels:
@@ -14,7 +17,10 @@ kind: DestinationRule
 metadata:
   name: reviews
 spec:
-  host: reviews
+  host: reviews.bookinfo.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
   subsets:
   - name: v1
     labels:
@@ -31,7 +37,10 @@ kind: DestinationRule
 metadata:
   name: ratings
 spec:
-  host: ratings
+  host: ratings.bookinfo.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
   subsets:
   - name: v1
     labels:
@@ -51,7 +60,10 @@ kind: DestinationRule
 metadata:
   name: details
 spec:
-  host: details
+  host: details.bookinfo.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
   subsets:
   - name: v1
     labels:
